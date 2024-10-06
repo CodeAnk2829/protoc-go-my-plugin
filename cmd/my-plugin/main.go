@@ -24,15 +24,18 @@ func generatedFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generate
 	g.P()
 	g.P("package ", file.GoPackageName)
 	g.P()
+	g.P(`import "github.com/common-nighthawk/go-figure"`)
+	g.P()
 	
 	for _, msg := range file.Messages {
 		g.P("func (req *", msg.GoIdent, ") ShowMessages() string {")
 		g.P("var result string")
+		g.P(`fontStyle := "doom"`)
 		
 		for _, field := range msg.Fields {
 			fieldName := field.GoName
 			fieldType := field.Desc.Kind()
-
+			
 			switch fieldType {
 			case protoreflect.StringKind:
 				g.P("result += req.", fieldName)
@@ -40,8 +43,9 @@ func generatedFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generate
 				g.P("// other fields are not added yet")
 			}
 		}
-
-		g.P("return result")
+		
+		g.P("fig := figure.NewFigure(result, fontStyle, true)")
+		g.P("return fig.String()")
 		g.P("}")
 	}
 	

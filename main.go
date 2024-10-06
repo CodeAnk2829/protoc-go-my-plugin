@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
-	ex := &example.HelloResponse{Message: "Hi Ankit"}
+	fmt.Println("Enter your name")
+	var name string
+	fmt.Scan(&name)
+
+	ex := &example.HelloRequest{Name: name}
 	fmt.Println(ex.ShowMessages())
 }

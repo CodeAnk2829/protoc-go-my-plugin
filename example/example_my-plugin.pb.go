@@ -2,13 +2,19 @@
 
 package example
 
+import "github.com/common-nighthawk/go-figure"
+
 func (req *HelloRequest) ShowMessages() string {
 	var result string
+	fontStyle := "doom"
 	result += req.Name
-	return result
+	fig := figure.NewFigure(result, fontStyle, true)
+	return fig.String()
 }
 func (req *HelloResponse) ShowMessages() string {
 	var result string
+	fontStyle := "doom"
 	result += req.Message
-	return result
+	fig := figure.NewFigure(result, fontStyle, true)
+	return fig.String()
 }

@@ -1,4 +1,6 @@
 # Protoc-Go-My-Plugin
+## Description
+- A simple custom plugin that accepts your name and displays it in the console using a beautiful font.
 
 ## Setup
 **Step-1:-** Clone the repository
